@@ -251,3 +251,8 @@ properties:
   ### Simple
   simple_webhook_url: *arrayOfString
   simple_proxy: {type: string}
+
+  ### Kafka
+  kafka_host: {type: string}
+  kafka_port: {type: string}
+  kafka_topic: {type: string}

@@ -26,6 +26,7 @@ from texttable import Texttable
 from exotel import Exotel
 from twilio import TwilioRestException
 from twilio.rest import TwilioRestClient
+from kafka import KafkaProducer
 from util import EAException
 from util import elastalert_logger
 from util import lookup_es_key
@@ -1238,3 +1239,29 @@ class SimplePostAlerter(Alerter):
     def get_info(self):
         return {'type': 'simple',
                 'simple_webhook_url': self.simple_webhook_url}
+
+
+class KafkaAlerter(Alerter):
+    required_options = frozenset(['kafka_host','kafka_port','kafka_topic'])
+
+    def __init__(self, rule):
+        super(KafkaAlerter, self).__init__(rule)
+        self.kafka_host = self.rule['kafka_host']
+        self.kafka_port = self.rule['kafka_port']
+        self.kafka_topic = self.rule['kafka_topic']
+
+    def alert(self, matches):
+        producer = KafkaProducer(bootstrap_servers=[self.kafka_host + ':' + self.kafka_port])
+        message = ''
+        for match in matches:
+            message += unicode(BasicMatchString(self.rule, match))
+            # Separate text of aggregated alerts with dashes
+            if len(matches) > 1:
+                message += '\n----------------------------------------\n'
+        producer.send(self.kafka_topic, b'test message')
+
+    def get_info(self):
+        return {'type': 'kafka',
+                'kafka_socket': self.kafka_host + ':' + self.kafka_port,
+                'kafka_topic': self.kafka_topic,
+                }

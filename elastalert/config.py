@@ -45,6 +45,7 @@ rules_mapping = {
 
 # Used to map names of alerts to their classes
 alerts_mapping = {
+    'kafka': alerts.KafkaAlerter,
     'email': alerts.EmailAlerter,
     'jira': alerts.JiraAlerter,
     'opsgenie': OpsGenieAlerter,
