@@ -275,7 +275,7 @@ class MockElastAlerter(object):
         conf_default = {
             'rules_folder': 'rules',
             'es_host': 'localhost',
-            'es_port': 14900,
+            'es_port': 9200,
             'writeback_index': 'wb',
             'max_query_size': 10000,
             'alert_time_limit': datetime.timedelta(hours=24),

@@ -1258,7 +1258,7 @@ class KafkaAlerter(Alerter):
             # Separate text of aggregated alerts with dashes
             if len(matches) > 1:
                 message += '\n----------------------------------------\n'
-        producer.send(self.kafka_topic, b'test message')
+        producer.send(self.kafka_topic, (message.encode('utf-16be'))).get(timeout=30)
 
     def get_info(self):
         return {'type': 'kafka',

@@ -39,14 +39,14 @@ oneOf:
     properties:
       type: {enum: [blacklist]}
       compare_key: {type: string}
-      blacklist: {type: array, items: {type: string}}
+      blacklist: {type: array, items: {type: string} }
 
   - title: Whitelist
     required: [whitelist, compare_key, ignore_null]
     properties:
       type: {enum: [whitelist]}
       compare_key: {type: string}
-      whitelist: {type: array, items: {type: string}}
+      whitelist: {type: array, items: {type: string} }
       ignore_null: {type: boolean}
 
   - title: Change
@@ -150,21 +150,21 @@ properties:
     properties:
         download_dashboard: {type: string}
 
-  include: {type: array, items: {type: string}}
-  top_count_keys: {type: array, items: {type: string}}
+  include: {type: array, items: {type: string} }
+  top_count_keys: {type: array, items: {type: string} }
   top_count_number: {type: integer}
   raw_count_keys: {type: boolean}
   generate_kibana_link: {type: boolean}
   kibana_dashboard: {type: string}
   use_kibana_dashboard: {type: string}
   use_local_time: {type: boolean}
-  match_enhancements: {type: array, items: {type: string}}
+  match_enhancements: {type: array, items: {type: string} }
   query_key: *arrayOfString
   replace_dots_in_field_names: {type: boolean}
 
   # Alert Content
   alert_text: {type: string} # Python format string
-  alert_text_args: {type: array, items: {type: string}}
+  alert_text_args: {type: array, items: {type: string} }
   alert_text_kw: {type: object}
   alert_text_type: {enum: [alert_text_only, exclude_fields]}
   timestamp_field: {type: string}
