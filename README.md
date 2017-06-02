@@ -52,6 +52,7 @@ Currently, we have support built in for the following alert types:
 - Exotel
 - Twilio
 - Gitter
+- Kafka
 
 Additional rule types and alerts can be easily imported or written.
 
